@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎄 Lista de Deseos de Navidad — Daniel</title>
+  <!-- Tailwind CSS para diseño adaptable y moderno -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tipografías Inter y Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            pine: {
+              950: '#071510',
+              900: '#0d231b',
+              800: '#143328',
+              700: '#1c4738',
+            },
+            gold: {
+              300: '#f3d689',
+              400: '#e8be58',
+              500: '#d4a336',
+            },
+            berry: {
+              500: '#d93848',
+              600: '#b82534',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Oculta la barra de desplazamiento horizontal en los filtros táctiles */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-pine-950 text-stone-100 font-sans antialiased selection:bg-gold-500 selection:text-pine-950 min-h-screen flex flex-col">
+
+  <!-- Encabezado navideño optimizado para móvil y compartir por WhatsApp -->
+  <header class="relative overflow-hidden bg-gradient-to-b from-pine-800 via-pine-900 to-pine-950 border-b border-emerald-800/40 pt-7 pb-6 px-4 sm:px-6">
+    <!-- Halo decorativo sutil -->
+    <div class="pointer-events-none absolute -top-24 -right-24 w-72 h-72 rounded-full bg-gold-500/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-berry-500/10 blur-3xl"></div>
+
+    <div class="max-w-5xl mx-auto relative z-10">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/15 border border-gold-400/30 text-gold-300 text-xs font-semibold tracking-wide uppercase mb-3">
+            <span>🎄 Navidad &amp; Black Friday</span>
+          </div>
+          <h1 class="font-serif text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Lista de Deseos de Navidad <span class="text-gold-400">— Daniel</span>
+          </h1>
+          <p class="text-stone-300 text-sm sm:text-base mt-1.5 max-w-2xl leading-relaxed">
+            Mis 8 regalos principales organizados por categoría, con precios orientativos, ofertas de Black Friday y enlaces directos.
+          </p>
+        </div>
+
+        <!-- Contadores rápidos -->
+        <div class="flex items-center justify-around sm:justify-end gap-5 bg-pine-950/60 backdrop-blur-md border border-emerald-800/50 rounded-2xl px-5 py-3.5 shrink-0">
+          <div class="text-center">
+            <span id="stat-total" class="block text-xl sm:text-2xl font-extrabold text-white">8</span>
+            <span class="text-[11px] uppercase tracking-wider text-stone-400">Regalos</span>
+          </div>
+          <div class="h-8 w-px bg-emerald-800/60"></div>
+          <div class="text-center">
+            <span id="stat-bf" class="block text-xl sm:text-2xl font-extrabold text-amber-400">4</span>
+            <span class="text-[11px] uppercase tracking-wider text-stone-400">Black Friday</span>
+          </div>
+          <div class="h-8 w-px bg-emerald-800/60"></div>
+          <div class="text-center">
+            <span id="stat-visible" class="block text-xl sm:text-2xl font-extrabold text-gold-300">8</span>
+            <span class="text-[11px] uppercase tracking-wider text-stone-400">Visibles</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón para copiar texto formateado para WhatsApp -->
+      <div class="mt-5 flex flex-wrap items-center gap-2.5">
+        <button id="btn-copy-whatsapp" type="button" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-[0.99] text-white font-semibold text-sm shadow-lg shadow-emerald-950/50 transition cursor-pointer">
+          <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+          </svg>
+          <span>Copiar para WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Barra de filtros y buscador pegajosa -->
+  <div class="sticky top-0 z-30 bg-pine-950/92 backdrop-blur-lg border-b border-emerald-900/60 py-3 px-4 sm:px-6">
+    <div class="max-w-5xl mx-auto space-y-3">
+      <!-- Pestañas de categoría -->
+      <div id="category-filters" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-0.5">
+        <button type="button" data-cat="Todas" class="cat-btn px-3.5 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer bg-gold-400 text-pine-950 shadow">
+          🎁 Todas
+        </button>
+        <button type="button" data-cat="Gaming y Coleccionismo" class="cat-btn px-3.5 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer bg-pine-900 text-stone-300 hover:bg-pine-800 border border-emerald-800/50">
+          🎮 Gaming y Coleccionismo
+        </button>
+        <button type="button" data-cat="Tecnología y Hogar" class="cat-btn px-3.5 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer bg-pine-900 text-stone-300 hover:bg-pine-800 border border-emerald-800/50">
+          🔌 Tecnología y Hogar
+        </button>
+        <button type="button" data-cat="Deporte y Ropa" class="cat-btn px-3.5 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer bg-pine-900 text-stone-300 hover:bg-pine-800 border border-emerald-800/50">
+          🏋️‍♂️ Deporte y Ropa
+        </button>
+        <button type="button" data-cat="Gourmet" class="cat-btn px-3.5 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition cursor-pointer bg-pine-900 text-stone-300 hover:bg-pine-800 border border-emerald-800/50">
+          🍫 Gourmet
+        </button>
+      </div>
+
+      <!-- Filtro Black Friday + Buscador -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+        <button id="toggle-bf" type="button" aria-pressed="false" class="inline-flex items-center justify-center sm:justify-start gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold border border-amber-500/40 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 transition cursor-pointer">
+          <span id="bf-dot" class="w-2 h-2 rounded-full bg-amber-400/50"></span>
+          <span>🔥 Solo Ofertas Black Friday</span>
+        </button>
+
+        <div class="relative flex-1 sm:max-w-xs">
+          <input id="search-input" type="text" placeholder="Buscar producto, tienda o precio..." class="w-full pl-9 pr-3 py-2 rounded-xl bg-pine-900/90 border border-emerald-800/60 text-sm text-white placeholder-stone-400 focus:outline-none focus:border-gold-400 transition" />
+          <svg class="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-14">
+
+    <!-- Sección de los 8 regalos principales -->
+    <section aria-labelledby="main-gifts-heading">
+      <div class="flex items-center justify-between gap-2 mb-5">
+        <div>
+          <h2 id="main-gifts-heading" class="font-serif text-2xl sm:text-3xl font-bold text-white">
+            Mis 8 Regalos Principales
+          </h2>
+          <p class="text-xs sm:text-sm text-stone-400 mt-0.5">
+            Agrupados por categoría, con etiquetas de Black Friday y acceso directo a la tienda.
+          </p>
+        </div>
+      </div>
+
+      <!-- Mensaje cuando los filtros no arrojan coincidencias -->
+      <div id="empty-state" class="hidden text-center py-14 px-4 bg-pine-900/40 border border-emerald-800/40 rounded-3xl">
+        <div class="text-4xl mb-3">🎄</div>
+        <h3 class="text-lg font-bold text-white">No hay regalos con esos filtros</h3>
+        <p class="text-stone-400 text-sm mt-1">Prueba a desactivar el filtro de Black Friday, limpiar la búsqueda o elegir "Todas".</p>
+        <button id="btn-reset-filters" type="button" class="mt-4 px-4 py-2.5 rounded-xl bg-gold-400 text-pine-950 font-semibold text-sm cursor-pointer">
+          Mostrar todos
+        </button>
+      </div>
+
+      <!-- Cuadrícula de regalos principales -->
+      <div id="wishlist-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Generado dinámicamente por JavaScript -->
+      </div>
+    </section>
+
+    <!-- Sección independiente: Modo regalo sorpresa (no afectada por los filtros superiores) -->
+    <section id="surprise-mode-section" aria-labelledby="surprise-heading" class="rounded-3xl bg-gradient-to-br from-pine-900/95 via-pine-900/80 to-emerald-950/90 border border-gold-400/25 p-5 sm:p-8 shadow-2xl shadow-black/30">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-500/15 border border-gold-400/30 text-gold-300 text-xs font-semibold mb-2">
+            <span>✨ Pistas sin desvelar el detalle</span>
+          </div>
+          <h2 id="surprise-heading" class="font-serif text-2xl sm:text-3xl font-bold text-white">
+            Modo regalo sorpresa
+          </h2>
+          <p class="text-xs sm:text-sm text-stone-300 mt-1 max-w-2xl leading-relaxed">
+            Si prefieres improvisar o dar un toque personal sin ceñirte a los 8 enlaces anteriores, estas pistas marcan el rumbo que encaja conmigo.
+          </p>
+        </div>
+      </div>
+
+      <!-- 4 tarjetas de pistas temáticas (sin precios ni botones de compra) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="rounded-2xl bg-pine-950/75 border border-emerald-800/50 p-5">
+          <div class="flex items-center gap-2.5 text-gold-300 font-bold text-base">
+            <span class="text-xl" aria-hidden="true">🚀</span>
+            <h3>Sci-fi y fantasía</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-300 mt-2 leading-relaxed">
+            Universos de ciencia ficción o fantasía épica, ediciones cuidadas, lecturas envolventes o guiños de ambientación para desconectar.
+          </p>
+        </div>
+
+        <div class="rounded-2xl bg-pine-950/75 border border-emerald-800/50 p-5">
+          <div class="flex items-center gap-2.5 text-gold-300 font-bold text-base">
+            <span class="text-xl" aria-hidden="true">☕</span>
+            <h3>Café y dulce</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-300 mt-2 leading-relaxed">
+            Detalles para acompañar desayunos, sobremesas o tardes tranquilas con buen café o algún capricho dulce bien elegido.
+          </p>
+        </div>
+
+        <div class="rounded-2xl bg-pine-950/75 border border-emerald-800/50 p-5">
+          <div class="flex items-center gap-2.5 text-gold-300 font-bold text-base">
+            <span class="text-xl" aria-hidden="true">🖥️</span>
+            <h3>Setup y orden</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-300 mt-2 leading-relaxed">
+            Accesorios discretos, prácticos o con buen diseño que aporten orden, comodidad visual o limpieza en el escritorio o zona de juego.
+          </p>
+        </div>
+
+        <div class="rounded-2xl bg-pine-950/75 border border-emerald-800/50 p-5">
+          <div class="flex items-center gap-2.5 text-gold-300 font-bold text-base">
+            <span class="text-xl" aria-hidden="true">🏃‍♂️</span>
+            <h3>Cuerpo y rutina</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-300 mt-2 leading-relaxed">
+            Algo útil para el movimiento diario, la recuperación tras entrenar o el cuidado personal, sumando sin repetir lo que ya tengo.
+          </p>
+        </div>
+      </div>
+
+      <!-- Reglas rápidas de Sí / No -->
+      <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-3.5">
+        <div class="rounded-2xl bg-emerald-950/60 border border-emerald-600/35 p-4">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-emerald-300 mb-1.5">
+            ✅ Sí encaja
+          </p>
+          <p class="text-xs sm:text-sm text-stone-200 leading-relaxed">
+            Cosas con utilidad real en el día a día, buena calidad, un punto original o un detalle pensado con criterio.
+          </p>
+        </div>
+
+        <div class="rounded-2xl bg-berry-600/15 border border-berry-500/35 p-4">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-rose-300 mb-1.5">
+            ❌ Mejor evitar
+          </p>
+          <p class="text-xs sm:text-sm text-stone-200 leading-relaxed">
+            Duplicados de cosas que ya tengo (como mandos o esterillas) o trastos aparatosos y de relleno sin uso real.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="border-t border-emerald-900/50 py-6 px-4 text-center text-xs text-stone-400">
+    <p>🎄 Lista de Deseos de Navidad de Daniel • Usa <strong class="text-gold-300">"Copiar para WhatsApp"</strong> para enviar los regalos visibles en el chat.</p>
+  </footer>
+
+  <!-- Aviso flotante al copiar al portapapeles -->
+  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 translate-y-3 transition-all duration-300">
+    <div id="toast-msg" class="px-4 py-2.5 rounded-2xl bg-stone-900/95 border border-gold-400/50 text-white text-sm font-medium shadow-2xl flex items-center gap-2 whitespace-nowrap">
+      <span>✅ Copiado al portapapeles</span>
+    </div>
+  </div>
+
+  <script>
+    // Manejador de errores global para depuración segura
+    window.addEventListener('error', (event) => {
+      console.error('Error inesperado en la aplicación:', event.message || event.error);
+    });
+
+    // 8 regalos principales con precios, ofertas Black Friday y enlaces exactos
+    const WISHLIST_ITEMS = [
+      {
+        id: 'star-wars-outlaws-gold',
+        name: 'Star Wars Outlaws Gold Edition (Nintendo Switch 2)',
+        category: 'Gaming y Coleccionismo',
+        store: 'Amazon.es',
+        price: '26,99 €',
+        oldPrice: '39,99 €',
+        discountTag: 'Black Friday',
+        isBlackFriday: true,
+        badgeText: '🔥 Oferta Black Friday',
+        note: 'Oferta Black Friday desde 26,99 € en Amazon (antes 39,99 €; también visto en comparadores desde 26,99 € frente a ~46,42 €–50 €).',
+        url: 'https://www.amazon.es/Star-Wars-Outlaws-Gold-Switch/dp/B0F7L7V7W3'
+      },
+      {
+        id: 'star-fox-switch2',
+        name: 'Star Fox (Nintendo Switch 2)',
+        category: 'Gaming y Coleccionismo',
+        store: 'Amazon.es',
+        price: '52,95 €',
+        oldPrice: '',
+        discountTag: '',
+        isBlackFriday: false,
+        badgeText: '',
+        note: '52,95 € en Amazon (sin etiqueta Black Friday confirmada en captura).',
+        url: 'https://www.amazon.es/Nintendo-0045496314217-Star-Fox/dp/B0GZVYLLYK'
+      },
+      {
+        id: 'lego-game-boy-72046',
+        name: 'LEGO Game Boy (Set 72046)',
+        category: 'Gaming y Coleccionismo',
+        store: 'My Nintendo Store',
+        price: '41,99 €',
+        oldPrice: '59,99 €',
+        discountTag: 'Black Friday',
+        isBlackFriday: true,
+        badgeText: '🔥 Oferta Black Friday',
+        note: 'Oferta Black Friday 41,99 € (IVA incluido) en My Nintendo Store (antes 59,99 €).',
+        url: 'https://store.nintendo.com/es-es/game-boy-lego-72046-000000000010017907'
+      },
+      {
+        id: 'ikea-vastmarke',
+        name: 'Cargador inalámbrico VÄSTMÄRKE (IKEA - corcho, tapa blanca)',
+        category: 'Tecnología y Hogar',
+        store: 'IKEA',
+        price: '14,99 €',
+        oldPrice: '',
+        discountTag: '',
+        isBlackFriday: false,
+        badgeText: '',
+        note: '14,99 € (precio habitual).',
+        url: 'https://www.ikea.com/es/es/p/vastmarke-cargador-inalambrico-10598211/'
+      },
+      {
+        id: 'create-milk-frother',
+        name: 'Espumador y calentador de leche eléctrico CREATE (Milk Frother Studio, 350 ml, verde sage)',
+        category: 'Tecnología y Hogar',
+        store: 'Amazon.es',
+        price: '24,95 €',
+        oldPrice: '30,95 €',
+        discountTag: '-19% BF',
+        isBlackFriday: true,
+        badgeText: '🔥 Oferta Black Friday',
+        note: 'Oferta Black Friday 24,95 € en Amazon (antes 30,95 €, -19%).',
+        url: 'https://www.amazon.es/CREATE-Espumador-calentador-el%C3%A9ctrico-autom%C3%A1ticos/dp/B0D7MPBWN5'
+      },
+      {
+        id: 'adidas-3-stripes-woven',
+        name: 'Chándal Adidas Sportswear 3-Stripes Woven Tracksuits Set (Verde oliva)',
+        category: 'Deporte y Ropa',
+        store: 'Zalando',
+        price: '52,45 €',
+        oldPrice: '69,95 €',
+        discountTag: '-25% BF',
+        isBlackFriday: true,
+        badgeText: '🔥 Oferta Black Friday',
+        note: 'Oferta Black Friday 52,45 € en Zalando (antes 69,95 €, -25%).',
+        url: 'https://www.zalando.es/adidas-sportswear-3-stripes-woven-tracksuits-set-chandal-olive-fourwhite-adq42m00g-n11.html'
+      },
+      {
+        id: 'decathlon-ab-wheel',
+        name: 'Rueda abdominal doble modo Corength (Decathlon)',
+        category: 'Deporte y Ropa',
+        store: 'Decathlon',
+        price: '9,99 €',
+        oldPrice: '',
+        discountTag: '',
+        isBlackFriday: false,
+        badgeText: '',
+        note: '9,99 € (precio habitual).',
+        url: 'https://www.decathlon.es/es/p/rueda-abdominal-musculacion-ab-wheel-doble-modo/335943/m8969030'
+      },
+      {
+        id: 'marea-bread-panettone-choco',
+        name: 'Panettone Artesano al Chocolate Marea Bread (800 g)',
+        category: 'Gourmet',
+        store: 'Marea Bread',
+        price: '32,00 €',
+        oldPrice: '',
+        discountTag: '',
+        isBlackFriday: false,
+        badgeText: '',
+        note: '32,00 € (precio oficial orientativo).',
+        url: 'https://mareabread.es/'
+      }
+    ];
+
+    // Configuración visual por categoría
+    const CATEGORY_META = {
+      'Gaming y Coleccionismo': {
+        icon: '🎮',
+        pill: 'bg-indigo-500/20 text-indigo-300 border-indigo-400/30',
+        banner: 'from-indigo-950 via-purple-950/80 to-pine-900'
+      },
+      'Tecnología y Hogar': {
+        icon: '🔌',
+        pill: 'bg-sky-500/20 text-sky-300 border-sky-400/30',
+        banner: 'from-sky-950 via-cyan-950/75 to-pine-900'
+      },
+      'Deporte y Ropa': {
+        icon: '🏋️‍♂️',
+        pill: 'bg-emerald-500/20 text-emerald-300 border-emerald-400/30',
+        banner: 'from-emerald-950 via-teal-950/75 to-pine-900'
+      },
+      'Gourmet': {
+        icon: '🍫',
+        pill: 'bg-amber-600/20 text-amber-200 border-amber-500/35',
+        banner: 'from-amber-950 via-orange-950/75 to-pine-900'
+      }
+    };
+
+    // Estado de filtrado actual
+    let selectedCategory = 'Todas';
+    let onlyBlackFriday = false;
+    let searchTerm = '';
+
+    // Escapa caracteres HTML para evitar inyección en plantillas
+    function escapeHtml(text) {
+      if (!text) return '';
+      return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Muestra un aviso temporal en pantalla
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      toastMsg.textContent = message;
+      toast.classList.remove('opacity-0', 'translate-y-3');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-3');
+      }, 2600);
+    }
+
+    // Devuelve los regalos filtrados según categoría, Black Friday y buscador
+    function getFilteredItems() {
+      const q = searchTerm.trim().toLowerCase();
+      return WISHLIST_ITEMS.filter(item => {
+        const matchCat = selectedCategory === 'Todas' || item.category === selectedCategory;
+        const matchBf = !onlyBlackFriday || item.isBlackFriday;
+        const matchSearch = !q ||
+          item.name.toLowerCase().includes(q) ||
+          item.note.toLowerCase().includes(q) ||
+          item.category.toLowerCase().includes(q) ||
+          item.store.toLowerCase().includes(q) ||
+          item.price.toLowerCase().includes(q);
+        return matchCat && matchBf && matchSearch;
+      });
+    }
+
+    // Actualiza los contadores del encabezado
+    function updateCounters(visibleCount) {
+      document.getElementById('stat-total').textContent = WISHLIST_ITEMS.length;
+      document.getElementById('stat-bf').textContent = WISHLIST_ITEMS.filter(i => i.isBlackFriday).length;
+      document.getElementById('stat-visible').textContent = visibleCount;
+    }
+
+    // Renderiza las tarjetas de regalos filtrados
+    function renderWishlist() {
+      const grid = document.getElementById('wishlist-grid');
+      const emptyState = document.getElementById('empty-state');
+      const filtered = getFilteredItems();
+
+      updateCounters(filtered.length);
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      grid.innerHTML = filtered.map(item => {
+        const meta = CATEGORY_META[item.category] || CATEGORY_META['Tecnología y Hogar'];
+
+        return `
+          <article class="group flex flex-col rounded-3xl overflow-hidden bg-pine-900/90 border border-emerald-800/60 hover:border-gold-400/60 shadow-xl shadow-black/30 transition-all duration-300">
+            <!-- Cabecera visual de la tarjeta -->
+            <div class="relative h-24 bg-gradient-to-br ${meta.banner} p-4 flex items-start justify-between gap-2 border-b border-white/5">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold border ${meta.pill}">
+                <span>${meta.icon}</span>
+                <span>${escapeHtml(item.category)}</span>
+              </span>
+
+              <span class="text-xs font-medium text-stone-200 bg-black/30 px-2.5 py-1 rounded-lg shrink-0">
+                ${escapeHtml(item.store)}
+              </span>
+
+              ${item.isBlackFriday ? `
+                <div class="absolute -bottom-3 left-4 z-10 flex items-center gap-1.5">
+                  <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-extrabold bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-lg shadow-orange-950/60 border border-amber-300/40">
+                    ${escapeHtml(item.badgeText)}
+                  </span>
+                  ${item.discountTag ? `
+                    <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-pine-950/90 text-amber-300 border border-amber-400/40">
+                      ${escapeHtml(item.discountTag)}
+                    </span>
+                  ` : ''}
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Cuerpo de la tarjeta -->
+            <div class="flex-1 flex flex-col p-5 ${item.isBlackFriday ? 'pt-6' : 'pt-4'}">
+              <h3 class="text-base sm:text-lg font-bold text-white leading-snug">
+                ${escapeHtml(item.name)}
+              </h3>
+
+              <p class="text-xs sm:text-sm text-stone-300 mt-2 leading-relaxed flex-1">
+                ${escapeHtml(item.note)}
+              </p>
+
+              <!-- Precio actual y precio anterior si aplica -->
+              <div class="mt-4 pt-3 border-t border-emerald-800/40 flex items-baseline justify-between gap-2">
+                <span class="text-[11px] uppercase tracking-wider text-stone-400">Precio</span>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-lg font-extrabold ${item.isBlackFriday ? 'text-amber-400' : 'text-gold-300'}">
+                    ${escapeHtml(item.price)}
+                  </span>
+                  ${item.oldPrice ? `
+                    <span class="text-xs text-stone-400 line-through">
+                      ${escapeHtml(item.oldPrice)}
+                    </span>
+                  ` : ''}
+                </div>
+              </div>
+
+              <!-- Botón de enlace directo al producto -->
+              <div class="mt-4">
+                <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl ${
+                  item.isBlackFriday
+                    ? 'bg-gold-400 hover:bg-gold-300 text-pine-950 font-bold shadow-md shadow-black/25'
+                    : 'bg-pine-800 hover:bg-pine-700 border border-emerald-700/60 text-white font-semibold'
+                } text-sm transition">
+                  <span>Ver en ${escapeHtml(item.store)}</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // Construye el texto formateado para WhatsApp con los regalos visibles/filtrados
+    function formatWhatsAppMessage(items) {
+      const categoryOrder = [
+        'Gaming y Coleccionismo',
+        'Tecnología y Hogar',
+        'Deporte y Ropa',
+        'Gourmet'
+      ];
+
+      const headerParts = ['🎄 *LISTA DE DESEOS DE NAVIDAD — DANIEL* 🎁'];
+      if (selectedCategory !== 'Todas' || onlyBlackFriday || searchTerm.trim()) {
+        const filterLabels = [];
+        if (selectedCategory !== 'Todas') filterLabels.push(`Categoría: ${selectedCategory}`);
+        if (onlyBlackFriday) filterLabels.push('Solo Ofertas Black Friday');
+        if (searchTerm.trim()) filterLabels.push(`Búsqueda: "${searchTerm.trim()}"`);
+        headerParts.push(`_Filtro activo: ${filterLabels.join(' · ')}_`);
+      }
+      headerParts.push('');
+
+      const bodyParts = [];
+      categoryOrder.forEach(cat => {
+        const groupItems = items.filter(i => i.category === cat);
+        if (groupItems.length === 0) return;
+
+        const meta = CATEGORY_META[cat];
+        bodyParts.push(`${meta.icon} *${cat.toUpperCase()}*`);
+
+        groupItems.forEach(item => {
+          const bfLabel = item.isBlackFriday ? ` — *${item.badgeText}*` : '';
+          const oldPriceText = item.oldPrice ? ` (antes ${item.oldPrice})` : '';
+          bodyParts.push(`• *${item.name}* — *${item.price}*${oldPriceText}${bfLabel}`);
+          bodyParts.push(`  🔗 ${item.url}`);
+        });
+
+        bodyParts.push('');
+      });
+
+      return [...headerParts, ...bodyParts].join('\n').trim();
+    }
+
+    // Copia el mensaje para WhatsApp al portapapeles usando execCommand para compatibilidad en iFrames
+    function handleCopyWhatsApp() {
+      const visibleItems = getFilteredItems();
+      if (visibleItems.length === 0) {
+        showToast('No hay regalos visibles para copiar');
+        return;
+      }
+
+      const formattedText = formatWhatsAppMessage(visibleItems);
+      const tempTextarea = document.createElement('textarea');
+      tempTextarea.value = formattedText;
+      tempTextarea.setAttribute('readonly', '');
+      tempTextarea.style.position = 'fixed';
+      tempTextarea.style.opacity = '0';
+      document.body.appendChild(tempTextarea);
+      tempTextarea.select();
+
+      try {
+        const copied = document.execCommand('copy');
+        if (copied) {
+          showToast(`Copiados ${visibleItems.length} regalo(s) para WhatsApp 📋`);
+        } else {
+          showToast('No se pudo copiar automáticamente');
+        }
+      } catch (err) {
+        console.error('Error al copiar texto para WhatsApp:', err);
+        showToast('Error al copiar al portapapeles');
+      } finally {
+        document.body.removeChild(tempTextarea);
+      }
+    }
+
+    // Configura los eventos interactivos de la página
+    function initEvents() {
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          selectedCategory = btn.dataset.cat;
+          document.querySelectorAll('.cat-btn').forEach(b => {
+            b.classList.remove('bg-gold-400', 'text-pine-950', 'shadow');
+            b.classList.add('bg-pine-900', 'text-stone-300', 'border', 'border-emerald-800/50');
+          });
+          btn.classList.remove('bg-pine-900', 'text-stone-300', 'border', 'border-emerald-800/50');
+          btn.classList.add('bg-gold-400', 'text-pine-950', 'shadow');
+          renderWishlist();
+        });
+      });
+
+      document.getElementById('toggle-bf').addEventListener('click', function() {
+        onlyBlackFriday = !onlyBlackFriday;
+        this.setAttribute('aria-pressed', String(onlyBlackFriday));
+        const dot = document.getElementById('bf-dot');
+
+        if (onlyBlackFriday) {
+          this.classList.remove('bg-amber-500/10', 'text-amber-300');
+          this.classList.add('bg-amber-500', 'text-pine-950', 'border-amber-400');
+          dot.classList.remove('bg-amber-400/50');
+          dot.classList.add('bg-pine-950');
+        } else {
+          this.classList.add('bg-amber-500/10', 'text-amber-300');
+          this.classList.remove('bg-amber-500', 'text-pine-950', 'border-amber-400');
+          dot.classList.add('bg-amber-400/50');
+          dot.classList.remove('bg-pine-950');
+        }
+        renderWishlist();
+      });
+
+      document.getElementById('search-input').addEventListener('input', (e) => {
+        searchTerm = e.target.value;
+        renderWishlist();
+      });
+
+      document.getElementById('btn-reset-filters').addEventListener('click', () => {
+        selectedCategory = 'Todas';
+        onlyBlackFriday = false;
+        searchTerm = '';
+        document.getElementById('search-input').value = '';
+
+        const bfBtn = document.getElementById('toggle-bf');
+        const dot = document.getElementById('bf-dot');
+        bfBtn.setAttribute('aria-pressed', 'false');
+        bfBtn.classList.add('bg-amber-500/10', 'text-amber-300');
+        bfBtn.classList.remove('bg-amber-500', 'text-pine-950', 'border-amber-400');
+        dot.classList.add('bg-amber-400/50');
+        dot.classList.remove('bg-pine-950');
+
+        document.querySelectorAll('.cat-btn').forEach((b, idx) => {
+          if (idx === 0) {
+            b.classList.add('bg-gold-400', 'text-pine-950', 'shadow');
+            b.classList.remove('bg-pine-900', 'text-stone-300', 'border', 'border-emerald-800/50');
+          } else {
+            b.classList.remove('bg-gold-400', 'text-pine-950', 'shadow');
+            b.classList.add('bg-pine-900', 'text-stone-300', 'border', 'border-emerald-800/50');
+          }
+        });
+
+        renderWishlist();
+      });
+
+      document.getElementById('btn-copy-whatsapp').addEventListener('click', handleCopyWhatsApp);
+    }
+
+    // Arranque inicial de la aplicación
+    window.addEventListener('DOMContentLoaded', () => {
+      initEvents();
+      renderWishlist();
+    });
+  </script>
+</body>
+</html>
